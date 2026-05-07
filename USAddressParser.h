@@ -9,11 +9,13 @@
 class USAddressParser
 {
 public:
-  void parseAdddress(const std::string& addressFile);
+  Address parseAdddress();
+
+  void setRawAddressStr(const std::vector<std::string>& rawAddress);
+
+  void clear();
 
 private:
-  void readAddressFromFile(const std::string& addressFile);
-
   // Street address is the first line
   void parseStreetAddress();
 

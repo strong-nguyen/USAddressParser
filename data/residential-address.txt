@@ -1,3 +1,23 @@
 969 Cox Rd
 Gastonia, NC 28054-3455
-USA
+
+1476 Sandhill Rd
+Orem, UT 84058-7310
+
+132 Maple St # B
+Frostburg, MD 21532-1826
+
+742 Evergreen Terrace
+Springfield, IL 62704
+
+10 Pearl St # 204 (Apartment)
+Denver, CO 80203
+
+4322 Birch Lane # B (Secondary Unit/Backhouse)
+Seattle, WA 98105
+
+1600 Pennsylvania Avenue NW (Official/Government)
+Washington, DC 20500
+
+5021 Heritage Way, Apt 4C
+Atlanta, GA 30305

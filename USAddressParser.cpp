@@ -7,33 +7,23 @@
 #include <format>
 #include <sstream>
 
-void USAddressParser::parseAdddress(const std::string& addressFile)
+Address USAddressParser::parseAdddress()
 {
-  readAddressFromFile(addressFile);
   parseStreetAddress();
   parseLocationAddress();
 
-  std::cout << _address << std::endl;
+  return _address;
 }
 
-void USAddressParser::readAddressFromFile(const std::string& addressFile)
+void USAddressParser::setRawAddressStr(const std::vector<std::string>& rawAddress)
 {
-  std::ifstream f(addressFile);
-  if (!f)
-  {
-    std::cerr << std::format("File {} not found", addressFile) << std::endl;
-    return;
-  }
+  _rawAddress = rawAddress;
+}
 
-  // Read line by line
-  std::string line; 
-  while (std::getline(f, line))
-  {
-    if (!line.empty())
-    {
-      _rawAddress.push_back(line);
-    }
-  }
+void USAddressParser::clear()
+{
+  _rawAddress.clear();
+  _address = Address();
 }
 
 void USAddressParser::parseStreetAddress()

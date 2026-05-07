@@ -5,6 +5,9 @@
 
 #include <iostream>
 #include <format>
+#include <string>
+#include <fstream>
+#include <vector>
 
 
 int main(int argc, char** argv)
@@ -15,9 +18,42 @@ int main(int argc, char** argv)
     return 1;
   }
 
-  std::string addressFile(argv[1]);
+  std::ifstream f(argv[1]);
+  if (!f)
+  {
+    std::cerr << std::format("File {} not found\n", argv[1]);
+    return 1;
+  }
+
+
   USAddressParser parser;
-  parser.parseAdddress(addressFile);
+  std::string line;
+  std::vector<std::string> rawAddressStr;
+  while (std::getline(f, line))
+  {
+    if (!line.empty())
+    {
+      rawAddressStr.push_back(line);
+    }
+    else
+    {
+      parser.clear();
+      parser.setRawAddressStr(rawAddressStr);
+      auto address = parser.parseAdddress();
+      std::cout << address << std::endl;
+      std::cout << "####\n\n";
+      rawAddressStr.clear();
+    }
+  }
+
+  if (!rawAddressStr.empty())
+  {
+    parser.clear();
+    parser.setRawAddressStr(rawAddressStr);
+    auto address = parser.parseAdddress();
+    std::cout << address << std::endl;
+    std::cout << "####\n\n";
+  }
 
   return 0;
 }
