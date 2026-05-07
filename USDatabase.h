@@ -3,12 +3,12 @@
 
 #include <map>
 #include <string>
-#include <set>
+#include <vector>
 
 
 namespace uap
 {
   extern std::map<std::string, std::string> USStates;
 
-  extern std::set<std::string> StreetSuffixes;
+  extern std::vector<std::string> StreetSuffixes;
 }

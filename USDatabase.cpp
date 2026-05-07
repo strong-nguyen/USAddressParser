@@ -65,10 +65,14 @@ std::map<std::string, std::string> uap::USStates =
   {"WY", "Wyoming"},
 };
 
-std::set<std::string> uap::StreetSuffixes =
+std::vector<std::string> uap::StreetSuffixes =
 {
+  "Road",
   "Rd",
+  "Street",
   "St",
+  "Avenue",
   "Ave",
+  "Boulevard",
   "Blvd"
 };

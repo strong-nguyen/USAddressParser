@@ -43,19 +43,35 @@ void USAddressParser::parseStreetAddress()
     if (found != std::string::npos)
     {
       _address.streetName = streetName.substr(0, found - 1);
+      _address.streetSuffix = suffix;
       break;
     }
   }
 
   // Parse secondary unit, for example: 132 Maple St # B
+  std::size_t secondaryUnitPos = -1;
   char arr[] = { '#', ',' };
   for (int i = 0; i < 2; ++i)
   {
-    if (std::size_t pos = streetName.find(arr[i]); pos != std::string::npos)
+    secondaryUnitPos = streetName.find(arr[i]);
+    if (secondaryUnitPos != std::string::npos)
     {
-      _address.secondaryUnit.secondaryUnit = streetName.substr(pos + 1);
+      _address.secondaryUnit.secondaryUnit = streetName.substr(secondaryUnitPos + 1);
       _address.secondaryUnit.secondaryDesignator = arr[i];
       break;
+    }
+  }
+
+  // Fix case street name suffix is not available
+  if (_address.streetName.empty())
+  {
+    if (secondaryUnitPos != std::string::npos)
+    {
+      _address.streetName = streetName.substr(0, secondaryUnitPos);
+    }
+    else
+    {
+      _address.streetName = streetName;
     }
   }
 }
