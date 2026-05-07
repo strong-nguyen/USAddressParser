@@ -42,9 +42,14 @@ void USAddressParser::parseStreetAddress()
     auto found = streetName.find(suffix);
     if (found != std::string::npos)
     {
-      _address.streetName = streetName.substr(0, found - 1);
-      _address.streetSuffix = suffix;
-      break;
+      // Fix bug with comercial address: After the suffix, it should be ' ' or ',' char or reach the end of string
+      std::size_t checkPos = found + suffix.length() + 1;
+      if (checkPos >= streetName.size() || streetName[checkPos] == ' ' || streetName[checkPos] == ',')
+      {
+        _address.streetName = streetName.substr(0, found - 1);
+        _address.streetSuffix = suffix;
+        break;
+      }
     }
   }
 
