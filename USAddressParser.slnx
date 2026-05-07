@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="USAddressParser.vcxproj" Id="b16bb680-f9a6-4d1f-973a-8930dcacff8f" />
+</Solution>
